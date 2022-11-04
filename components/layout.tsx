@@ -4,10 +4,16 @@ import styles from './layout.module.css'
 import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 
-const name = 'Daniel Holloway'
+const name = 'Daniel'
 export const siteTitle = 'Next.js Sample Website'
 
-export default function Layout({ children, home }) {
+export default function Layout({
+  children,
+  home
+}: {
+  children: React.ReactNode
+  home?: boolean
+}) {
   return (
     <div className={styles.container}>
       <Head>
@@ -41,20 +47,20 @@ export default function Layout({ children, home }) {
         ) : (
           <>
             <Link href="/">
-
-              <Image
-                priority
-                src="/images/profile.jpg"
-                className={utilStyles.borderCircle}
-                height={108}
-                width={108}
-                alt={name}
-              />
-
+              <a>
+                <Image
+                  priority
+                  src="/images/profile.jpg"
+                  className={utilStyles.borderCircle}
+                  height={108}
+                  width={108}
+                  alt={name}
+                />
+              </a>
             </Link>
             <h2 className={utilStyles.headingLg}>
-              <Link href="/" className={utilStyles.colorInherit}>
-                {name}
+              <Link href="/">
+                <a className={utilStyles.colorInherit}>{name}</a>
               </Link>
             </h2>
           </>
@@ -64,10 +70,10 @@ export default function Layout({ children, home }) {
       {!home && (
         <div className={styles.backToHome}>
           <Link href="/">
-            ← Back to home
+            <a>← Back to home</a>
           </Link>
         </div>
       )}
     </div>
-  );
+  )
 }
